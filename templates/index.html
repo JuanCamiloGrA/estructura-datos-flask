@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilas y Colas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Gestión de Pilas y Colas</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Crear Estructura</div>
+                <div class="card-body">
+                    <form action="/crear" method="post">
+                        <div class="form-group">
+                            <label for="tipo">Seleccionar estructura:</label>
+                            <select class="form-control" id="tipo" name="tipo">
+                                <option value="pila">Pila</option>
+                                <option value="cola">Cola</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Agregar Valor</div>
+                <div class="card-body">
+                    <form action="/agregar" method="post">
+                        <div class="form-group">
+                            <label for="valor">Agrega los valores separados por espacios:</label>
+                            <input type="text" class="form-control" id="valor" name="valor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Seleccionar estructura:</label>
+                            <select class="form-control" id="tipo" name="tipo">
+                                <option value="pila">Pila</option>
+                                <option value="cola">Cola</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Eliminar Valor</div>
+                <div class="card-body">
+                    <form action="/eliminar" method="post">
+                        <div class="form-group">
+                            <label for="tipo">Seleccionar estructura:</label>
+                            <select class="form-control" id="tipo" name="tipo">
+                                <option value="pila">Pila</option>
+                                <option value="cola">Cola</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Modificar Estructura</div>
+                <div class="card-body">
+                    <form action="/modificar" method="post">
+                        <div class="form-group">
+                            <label for="valor">Modificar hasta el valor:</label>
+                            <input type="number" class="form-control" id="valor" name="valor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Seleccionar estructura:</label>
+                            <select class="form-control" id="tipo" name="tipo">
+                                <option value="pila">Pila</option>
+                                <option value="cola">Cola</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Modificar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Mostrar Estructura</div>
+                <div class="card-body">
+                    <form action="/mostrar" method="get">
+                        <div class="form-group">
+                            <label for="tipo">Seleccionar estructura:</label>
+                            <select class="form-control" id="tipo" name="tipo">
+                                <option value="pila">Pila</option>
+                                <option value="cola">Cola</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Mostrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
